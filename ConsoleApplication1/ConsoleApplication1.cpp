@@ -2,12 +2,39 @@
 #include <cstdlib>
 
 using namespace std;
+int sort(const int size, int *values);
+int massSet(const int size, int *values);
+int printMass(const int size, int *values);
+
+/*
+Главная функция
+*/
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    int size;
+    cout << "Введите размер массива: ";
+    while (true)
+    {
+        cin >> size;
+        if (size < 0)
+        { cout << "Введите положительное число элементов: "; }
+        else break;
+    }
+    int* values = new int[size];
+    massSet(size, values);      // Заполнение массива
+    cout << "Исходный массив:" << "\n";
+    printMass(size, values);    // Вывод исходного массива
+    sort(size, values);         // Сортировка
+    cout << "Отсортированный массив:" << "\n";
+    printMass(size, values);    // Вывод отсортированного массива
+}
 
 /*!
 Функция сортировки массива
 Принимает на вход размер массива и сам массив
 */
-int sort(int size, int values[]) {
+int sort(const int  size, int *values) {
     for (int stInd = 0; stInd < size - 1; stInd++)
     {
         int maxIndex = stInd;
@@ -25,7 +52,7 @@ int sort(int size, int values[]) {
 Функция заполнения массива радомными значениями
 Принимает на вход размер массива и сам массив
 */
-int massSet(int size, int values[]) {
+int massSet(const int  size, int *values) {
     srand(clock());
     for (int i = 0; i < size; i++) {
         values[i] = rand();
@@ -37,27 +64,10 @@ int massSet(int size, int values[]) {
 Функция вывода массива на экран
 Принимает на вход размер массива и сам массив
 */
-int printMass(int size, int values[]) {
+int printMass(const int  size, int *values) {
     for (int i = 0; i < size; i++) {
         cout << i + 1 << ": " << values[i] << "\n";
     }
     return 0;
 }
 
-/*
-Главная функция
-*/
-int main()
-{
-    setlocale(LC_ALL, "Russian");
-    int size;
-    cout << "Введите размер массива: ";
-    cin >> size;
-    int* values = new int[size];
-    massSet(size, values);      // Заполнение массива
-    cout << "Исходный массив:" << "\n";
-    printMass(size, values);    // Вывод исходного массива
-    sort(size, values);         // Сортировка
-    cout << "Отсортированный массив:" << "\n";
-    printMass(size, values);    // Вывод отсортированного массива
-}
