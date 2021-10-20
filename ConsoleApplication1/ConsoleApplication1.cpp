@@ -5,6 +5,7 @@ using namespace std;
 int sort(const int size, int *values);
 int massSet(const int size, int *values);
 int printMass(const int size, int *values);
+int setSize(int *size);
 
 /*
 Главная функция
@@ -14,13 +15,7 @@ int main()
     setlocale(LC_ALL, "Russian");
     int size;
     cout << "Введите размер массива: ";
-    while (true)    // Проверка на положительный размер массива
-    {
-        cin >> size;
-        if (size < 0)
-        { cout << "Введите положительное число элементов: "; }
-        else break;
-    }
+    setSize(&size);             // Определить размер массива
     int* values = new int[size];
     massSet(size, values);      // Заполнение массива
     cout << "Исходный массив:" << "\n";
@@ -28,6 +23,23 @@ int main()
     sort(size, values);         // Сортировка
     cout << "Отсортированный массив:" << "\n";
     printMass(size, values);    // Вывод отсортированного массива
+}
+
+
+/*!
+Функция установки размера массива
+Принимает на вход указательно на размер
+*/
+int setSize(int *size) {
+    while (true)    // Проверка на положительный размер массива
+    {
+        cin >> *size;
+        if (*size < 0)
+        {
+            cout << "Введите положительное число элементов: ";
+        }
+        else return *size;
+    }
 }
 
 /*!
