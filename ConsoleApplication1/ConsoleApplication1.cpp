@@ -14,7 +14,6 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
     int size;
-    cout << "Введите размер массива: ";
     setSize(&size);             // Определить размер массива
     int* values = new int[size];
     massSet(size, values);      // Заполнение массива
@@ -31,6 +30,7 @@ int main()
 Принимает на вход указательно на размер
 */
 int setSize(int *size) {
+    cout << "Введите размер массива: ";
     while (true)    // Проверка на положительный размер массива
     {
         cin >> *size;
