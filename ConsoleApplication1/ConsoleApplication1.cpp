@@ -14,7 +14,7 @@ int main()
     setlocale(LC_ALL, "Russian");
     int size;
     cout << "Введите размер массива: ";
-    while (true)
+    while (true)    // Проверка на положительный размер массива
     {
         cin >> size;
         if (size < 0)
