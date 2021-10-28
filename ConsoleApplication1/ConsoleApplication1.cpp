@@ -1,11 +1,27 @@
 ﻿#include <iostream>
 #include <cstdlib>
+#include <conio.h>
 
 using namespace std;
+/*!
+Функция сортировки массива
+Принимает на вход размер массива и указатель на массив
+*/
 int sort(const int size, int *values);
+/*!
+Функция заполнения массива радомными значениями
+Принимает на вход размер массива и указатель на массив
+*/
 int massSet(const int size, int *values);
+/*!
+Функция вывода массива на экран
+Принимает на вход размер массива и указатель на массив
+*/
 int printMass(const int size, int *values);
-int setSize(int *size);
+/*!
+Функция установки размера массива
+*/
+int setSize();
 
 /*
 Главная функция
@@ -13,8 +29,7 @@ int setSize(int *size);
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    int size;
-    setSize(&size);             // Определить размер массива
+    const int size = setSize();
     int* values = new int[size];
     massSet(size, values);      // Заполнение массива
     cout << "Исходный массив:" << "\n";
@@ -22,30 +37,26 @@ int main()
     sort(size, values);         // Сортировка
     cout << "Отсортированный массив:" << "\n";
     printMass(size, values);    // Вывод отсортированного массива
+    _getch();
+    return 0;
 }
 
 
-/*!
-Функция установки размера массива
-Принимает на вход указатель на размер
-*/
-int setSize(int *size) {
+int setSize() {
+    int size;
     cout << "Введите размер массива: ";
     while (true)    // Проверка на положительный размер массива
     {
-        cin >> *size;
-        if (*size < 0)
+        cin >> size;
+        if (size < 0)
         {
             cout << "Введите положительное число элементов: ";
         }
-        else return *size;
+        else return size;
     }
 }
 
-/*!
-Функция сортировки массива
-Принимает на вход размер массива и указатель на массив
-*/
+
 int sort(const int  size, int *values) {
     for (int stInd = 0; stInd < size - 1; stInd++)
     {
@@ -60,10 +71,7 @@ int sort(const int  size, int *values) {
     return 0;
 }
 
-/*!
-Функция заполнения массива радомными значениями
-Принимает на вход размер массива и указатель на массив
-*/
+
 int massSet(const int  size, int *values) {
     srand(clock());
     for (int i = 0; i < size; i++) {
@@ -72,10 +80,7 @@ int massSet(const int  size, int *values) {
     return 0;
 }
 
-/*!
-Функция вывода массива на экран
-Принимает на вход размер массива и указатель на массив
-*/
+
 int printMass(const int  size, int *values) {
     for (int i = 0; i < size; i++) {
         cout << i + 1 << ": " << values[i] << "\n";
