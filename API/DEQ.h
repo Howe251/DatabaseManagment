@@ -57,7 +57,7 @@ private:
 		* \brief Конструктор с параметрами
 		* \param value Целое значение.
 		*/
-		DEQElement(int value);
+		DEQElement(int value, DEQElement* next = nullptr);
 		~DEQElement();
 
 	private:
