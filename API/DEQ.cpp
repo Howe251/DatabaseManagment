@@ -2,11 +2,9 @@
 #include "DEQ.h"
 #include <stdexcept>
 
-DEQ::DEQ()
-    : size(0), top(nullptr), tail(nullptr) {}
+DEQ::DEQ(): size(0), top(nullptr), tail(nullptr) {}
 
-DEQ::DEQ(const std::initializer_list<int> values) 
-    : DEQ()
+DEQ::DEQ(const std::initializer_list<int> values) : DEQ()
 {
     std::for_each(
         values.begin(),
@@ -23,12 +21,13 @@ void DEQ::PushFront(const int value) {
     else {
         const auto item = new DEQElement(value, this->top, this->tail);
         this->top = item;
+        this->tail = item;
         this->size++;
     }
 }
 
 void DEQ::PushBack(const int value) {
-    const auto item = new DEQElement(value, this->tail);
+    const auto item = new DEQElement(value, this->tail, this->top);
     this->tail = item;
     this->size++;
 }

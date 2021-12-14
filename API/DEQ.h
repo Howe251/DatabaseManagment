@@ -10,7 +10,7 @@ public:
 	/**
 	* \brief Конструктор по-умолчанию
 	*/
-	DEQ()=default;
+	DEQ();
 	/**
 	* \brief Создание объекта из последовательности
 	*/
@@ -69,12 +69,11 @@ private:
 		DEQElement* prev;
 	};
 	
-	size_t size = 0;
+	size_t size;
 
-	DEQElement* top = nullptr;
-	DEQElement* tail = nullptr;
-	
 	DEQ(const DEQ& rhs);
+	DEQElement* top;
+	DEQElement* tail;
 
 	DEQ operator= (const DEQ& rhs);
 };

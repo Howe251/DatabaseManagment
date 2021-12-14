@@ -46,11 +46,11 @@ int main()
         return 0;
     }
     else if (work == 2) {
-        DEQ deque;
+        DEQ deque = {1,2,3,4};
         cout << "ASD";
         //deque.PopFront();
         deque.PushFront(2);
-        //cout << deque.PopFront();
+        cout << deque.PopFront();
     }   
 }
 
