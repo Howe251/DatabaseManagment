@@ -2,7 +2,7 @@
 #include "DEQ.h"
 #include <stdexcept>
 
-DEQ::DEQ(): size(0), top(nullptr), tail(nullptr) {}
+DEQ::DEQ(): size(0), head(nullptr), tail(nullptr) {}
 
 DEQ::DEQ(const std::initializer_list<int> values) : DEQ()
 {
@@ -12,44 +12,66 @@ DEQ::DEQ(const std::initializer_list<int> values) : DEQ()
         [this](const int value) { this->PushFront(value); });
 }
 
-void DEQ::PushFront(const int value) {
-    if (this->size == 0) {
-        const auto item = new DEQElement(value, this->top, this->top);
-        this->top = item;
-        this->size++;
-    }
-    else {
-        const auto item = new DEQElement(value, this->top, this->tail);
-        this->top = item;
-        this->tail = item;
-        this->size++;
+DEQ::~DEQ()
+{
+    while (this->head)
+    {
+        tail = head->next;
+        delete head;
+        head = tail;
     }
 }
 
+void DEQ::PushFront(const int value) {
+    const auto temp = new DEQElement(value, this->head, this->head);
+    temp->next = nullptr;
+    temp->value = value;
+    if (head != nullptr) {
+        temp->prev = tail;
+        tail->next = temp;
+        tail = temp;
+    }
+    else {
+        temp->prev = nullptr;
+        head = tail = temp;
+    }
+    this->size++;
+}
+
 void DEQ::PushBack(const int value) {
-    const auto item = new DEQElement(value, this->tail, this->top);
-    this->tail = item;
+    const auto temp = new DEQElement(value, this->tail, this->head);
+    temp->prev = nullptr;
+    temp->value = value;
+    if (head != nullptr) {
+        temp->next = head;
+        head->prev = temp;
+        head = temp;
+    }
+    else {
+        temp->next = nullptr;
+        tail = head = temp;
+    }
     this->size++;
 }
 
 
-int DEQ::PopFront() {
+int DEQ::PopBack() {
     if (this->isEmpty())
     {
         throw std::out_of_range("ДЭК пуст");
     }
 
-    const auto value = this->top->value;
+    const auto value = this->head->value;
 
-    const auto temp = this->top;
-    this->top = top->next;
+    const auto temp = this->head;
+    this->head = head->next;
     this->size--;
-
+    this->head->prev = nullptr;
     delete temp;
     return value;
 }
 
-int DEQ::PopBack() {
+int DEQ::PopFront() {
     if (this->isEmpty())
     {
         throw std::out_of_range("ДЭК пуст");
@@ -60,7 +82,7 @@ int DEQ::PopBack() {
     const auto temp = this->tail;
     this->tail = tail->prev;
     this->size--;
-
+    this->tail->next = nullptr;
     delete temp;
     return value;
 }
@@ -83,4 +105,5 @@ DEQ::DEQElement::DEQElement(const int value, DEQElement* next, DEQElement* prev)
 DEQ::DEQElement::~DEQElement()
 {
     this->next = nullptr;
+    this->prev = nullptr;
 }

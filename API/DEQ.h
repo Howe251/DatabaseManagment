@@ -18,7 +18,7 @@ public:
 	/**
 	* \brief Деструктор по-умолчанию
 	*/
-	~DEQ()=default;
+	~DEQ();
 	/**
 	* \brief Добавление элемента в ДЭК в начало
 	* \param value целое число
@@ -72,7 +72,7 @@ private:
 	size_t size;
 
 	DEQ(const DEQ& rhs);
-	DEQElement* top;
+	DEQElement* head;
 	DEQElement* tail;
 
 	DEQ operator= (const DEQ& rhs);
