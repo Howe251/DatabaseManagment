@@ -1,4 +1,4 @@
-#include <algorithm>
+ï»¿#include <algorithm>
 #include "DEQ.h"
 #include <stdexcept>
 
@@ -16,9 +16,9 @@ DEQ::~DEQ()
 {
     while (this->head)
     {
-        tail = head->next;
+        auto temp = head->next;
         delete head;
-        head = tail;
+        head = temp;
     }
 }
 
@@ -58,7 +58,7 @@ void DEQ::PushBack(const int value) {
 int DEQ::PopBack() {
     if (this->isEmpty())
     {
-        throw std::out_of_range("ÄÝÊ ïóñò");
+        throw std::out_of_range("Ð”Ð­Ðš Ð¿ÑƒÑÑ‚");
     }
 
     const auto value = this->head->value;
@@ -74,7 +74,7 @@ int DEQ::PopBack() {
 int DEQ::PopFront() {
     if (this->isEmpty())
     {
-        throw std::out_of_range("ÄÝÊ ïóñò");
+        throw std::out_of_range("Ð”Ð­Ðš Ð¿ÑƒÑÑ‚");
     }
 
     const auto value = this->tail->value;
