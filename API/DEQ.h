@@ -14,7 +14,11 @@ public:
 	/**
 	* \brief Создание объекта из последовательности
 	*/
-	DEQ(std::initializer_list<int> value);
+	DEQ(const std::initializer_list<int> values);
+	/**
+	* \brief Деструктор по-умолчанию
+	*/
+	~DEQ();
 	/**
 	* \brief Добавление элемента в ДЭК в начало
 	* \param value целое число
@@ -36,11 +40,11 @@ public:
 	/**
 	* \brief Проверка ДЭК на пустоту
 	*/
-	const bool isEmpty();
+	bool isEmpty() const;
 	/**
-	* \brief Деструктор по-умолчанию
+	* \brief Получить размер ДЭК
 	*/
-	~DEQ();
+	std::size_t GetSize() const;
 
 private:
 	/**
@@ -57,13 +61,19 @@ private:
 		* \brief Конструктор с параметрами
 		* \param value Целое значение.
 		*/
-		DEQElement(int value);
+		DEQElement(int value, DEQElement* next = nullptr, DEQElement* prev = nullptr);
 		~DEQElement();
 
-	private:
 		int value;
 		DEQElement* next;
+		DEQElement* prev;
 	};
-	DEQElement* top;
+	
+	size_t size;
+
+	DEQ(const DEQ& rhs);
+	DEQElement* head;
 	DEQElement* tail;
+
+	DEQ operator= (const DEQ& rhs);
 };

@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <cstdlib>
-#include <conio.h>
+#include "../API/DEQ.h"
 
 using namespace std;
 /*!
@@ -29,16 +29,32 @@ int setSize();
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    const int size = setSize();
-    int* values = new int[size];
-    massSet(size, values);      // Заполнение массива
-    cout << "Исходный массив:" << "\n";
-    printMass(size, values);    // Вывод исходного массива
-    sort(size, values);         // Сортировка
-    cout << "Отсортированный массив:" << "\n";
-    printMass(size, values);    // Вывод отсортированного массива
-    _getch();
-    return 0;
+    cout << "1. Работа с массивом\n2. Работа с ДЭК\nВыбор:";
+    int work;
+    cin >> work;
+    if (work == 1) {
+        setlocale(LC_ALL, "Russian");
+        const int size = setSize();
+        int* values = new int[size];
+        massSet(size, values);      // Заполнение массива
+        cout << "Исходный массив:" << "\n";
+        printMass(size, values);    // Вывод исходного массива
+        sort(size, values);         // Сортировка
+        cout << "Отсортированный массив:" << "\n";
+        printMass(size, values);    // Вывод отсортированного массива
+        cin.get();
+        return 0;
+    }
+    else if (work == 2) {
+        DEQ deque = {1,2};
+        //deque.PopFront();
+        deque.PushFront(3);
+        deque.PushBack(0);
+
+        cout << deque.PopBack();
+        cout << deque.PopFront() << endl;
+        cout << "Конец" << "\n";
+    }   
 }
 
 
