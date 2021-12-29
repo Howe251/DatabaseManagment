@@ -64,10 +64,18 @@ int DEQ::PopBack() {
     const auto value = this->head->value;
 
     const auto temp = this->head;
-    this->head = head->next;
-    this->size--;
-    this->head->prev = nullptr;
+    if (this->size > 1) 
+    {
+        this->head = head->next;
+        this->head->prev = nullptr;
+    }
+    else
+    {
+        this->tail = nullptr;
+        this->head = nullptr;
+    }
     delete temp;
+    this->size--;
     return value;
 }
 
@@ -76,14 +84,19 @@ int DEQ::PopFront() {
     {
         throw std::out_of_range("ДЭК пуст");
     }
-
     const auto value = this->tail->value;
-
     const auto temp = this->tail;
-    this->tail = tail->prev;
-    this->size--;
-    this->tail->next = nullptr;
+    if (this->size > 1) {
+        this->tail = tail->prev;
+        this->tail->next = nullptr;
+    }
+    else
+    {
+        this->tail = nullptr;
+        this->head = nullptr;
+    }
     delete temp;
+    this->size--;
     return value;
 }
 

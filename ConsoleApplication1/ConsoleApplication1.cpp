@@ -46,13 +46,14 @@ int main()
         return 0;
     }
     else if (work == 2) {
-        DEQ deque = {1,2};
+        DEQ deque;
+        //DEQ deque = {1,2};
         //deque.PopFront();
         deque.PushFront(3);
-        deque.PushBack(0);
+        //deque.PushBack(0);
 
-        cout << deque.PopBack();
-        cout << deque.PopFront() << endl;
+        cout << deque.PopFront();
+        //cout << deque.PopFront() << endl;
         cout << "Конец" << "\n";
     }   
 }
