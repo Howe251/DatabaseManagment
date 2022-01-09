@@ -1,4 +1,4 @@
-#include "pch.h"
+п»ї#include "pch.h"
 #include "CppUnitTest.h"
 #include "../API/DEQ.h"
 
@@ -27,17 +27,17 @@ namespace ApiTests
 			DEQ result;
 			Assert::ExpectException<std::out_of_range>([&]
 				{
-					result.PopBack(); //проверка на ошибку пустоты
+					result.PopBack(); //РїСЂРѕРІРµСЂРєР° РЅР° РѕС€РёР±РєСѓ РїСѓСЃС‚РѕС‚С‹
 				});
 			result.PushBack(4);
 			size_t expected = 1;
 			Assert::AreEqual(expected, result.GetSize());
-			Assert::AreEqual(4, result.PopBack()); // тест с 1м элементом в ДЭК
+			Assert::AreEqual(4, result.PopBack()); // С‚РµСЃС‚ СЃ 1Рј СЌР»РµРјРµРЅС‚РѕРј РІ Р”Р­Рљ
 			expected = 0;
-			Assert::AreEqual(expected, result.GetSize()); // тест на уменьшение размера
+			Assert::AreEqual(expected, result.GetSize()); // С‚РµСЃС‚ РЅР° СѓРјРµРЅСЊС€РµРЅРёРµ СЂР°Р·РјРµСЂР°
 			result.PushFront(22);
 			result.PushFront(42);
-			Assert::AreEqual(22, result.PopBack()); // тест с несколькими элементами в ДЭК
+			Assert::AreEqual(22, result.PopBack()); // С‚РµСЃС‚ СЃ РЅРµСЃРєРѕР»СЊРєРёРјРё СЌР»РµРјРµРЅС‚Р°РјРё РІ Р”Р­Рљ
 			//Assert::AreEqual(1, result.PopBack());
 		}
 		TEST_METHOD(TestPopFront)
@@ -45,18 +45,18 @@ namespace ApiTests
 			DEQ result;
 			Assert::ExpectException<std::out_of_range>([&] 
 				{
-					result.PopFront(); //проверка на ошибку пустоты
+					result.PopFront(); //РїСЂРѕРІРµСЂРєР° РЅР° РѕС€РёР±РєСѓ РїСѓСЃС‚РѕС‚С‹
 				});
 
 			result.PushFront(5);
 			size_t expected = 1;
 			Assert::AreEqual(expected, result.GetSize());
-			Assert::AreEqual(5, result.PopFront()); // тест с 1м элементом в ДЭК
+			Assert::AreEqual(5, result.PopFront()); // С‚РµСЃС‚ СЃ 1Рј СЌР»РµРјРµРЅС‚РѕРј РІ Р”Р­Рљ
 			expected = 0;
-			Assert::AreEqual(expected, result.GetSize()); // тест на уменьшение размера
+			Assert::AreEqual(expected, result.GetSize()); // С‚РµСЃС‚ РЅР° СѓРјРµРЅСЊС€РµРЅРёРµ СЂР°Р·РјРµСЂР°
 			result.PushFront(22);
 			result.PushFront(42);
-			Assert::AreEqual(42, result.PopFront()); // тест с несколькими элементами в ДЭК
+			Assert::AreEqual(42, result.PopFront()); // С‚РµСЃС‚ СЃ РЅРµСЃРєРѕР»СЊРєРёРјРё СЌР»РµРјРµРЅС‚Р°РјРё РІ Р”Р­Рљ
 			
 		}
 		TEST_METHOD(TestPushBack)
@@ -66,11 +66,11 @@ namespace ApiTests
 			Assert::AreEqual(expected, result.GetSize());
 			result.PushBack(30);
 			expected = 1;
-			Assert::AreEqual(expected, result.GetSize()); // проверка на увеличение размера
-			Assert::AreEqual(30, result.PopBack()); // проверка с 1м элементом
+			Assert::AreEqual(expected, result.GetSize()); // РїСЂРѕРІРµСЂРєР° РЅР° СѓРІРµР»РёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР°
+			Assert::AreEqual(30, result.PopBack()); // РїСЂРѕРІРµСЂРєР° СЃ 1Рј СЌР»РµРјРµРЅС‚РѕРј
 			result.PushBack(50);
 			result.PushBack(10);
-			Assert::AreEqual(10, result.PopBack()); // проверка с несколькими элементами
+			Assert::AreEqual(10, result.PopBack()); // РїСЂРѕРІРµСЂРєР° СЃ РЅРµСЃРєРѕР»СЊРєРёРјРё СЌР»РµРјРµРЅС‚Р°РјРё
 		}
 		TEST_METHOD(TestPushFront)
 		{	
@@ -79,11 +79,11 @@ namespace ApiTests
 			Assert::AreEqual(expected, result.GetSize());
 			result.PushFront(50);
 			expected = 1;
-			Assert::AreEqual(expected, result.GetSize()); // проверка на увеличение размера
-			Assert::AreEqual(50, result.PopFront()); // проверка с 1м элементом
+			Assert::AreEqual(expected, result.GetSize()); // РїСЂРѕРІРµСЂРєР° РЅР° СѓРІРµР»РёС‡РµРЅРёРµ СЂР°Р·РјРµСЂР°
+			Assert::AreEqual(50, result.PopFront()); // РїСЂРѕРІРµСЂРєР° СЃ 1Рј СЌР»РµРјРµРЅС‚РѕРј
 			result.PushFront(30);
 			result.PushFront(2);
-			Assert::AreEqual(2, result.PopFront()); // проверка с несколькими элементами
+			Assert::AreEqual(2, result.PopFront()); // РїСЂРѕРІРµСЂРєР° СЃ РЅРµСЃРєРѕР»СЊРєРёРјРё СЌР»РµРјРµРЅС‚Р°РјРё
 		}
 		TEST_METHOD(TestGetSize)
 		{
